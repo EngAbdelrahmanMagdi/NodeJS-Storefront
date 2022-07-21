@@ -1,15 +1,16 @@
-import express, { Request, Response } from 'express'
-import bodyParser from 'body-parser'
+import express, { Request, Response, Application } from 'express';
+import dotenv from 'dotenv';
 
-const app: express.Application = express()
-const address: string = "0.0.0.0:3000"
+dotenv.config();
+const serverPort = process.env.PORT || 3000;
+const app: Application = express()
 
-app.use(bodyParser.json())
+
 
 app.get('/', function (req: Request, res: Response) {
     res.send('Hello World!')
 })
 
 app.listen(3000, function () {
-    console.log(`starting app on: ${address}`)
+    console.log(`The server is running in Port ${serverPort}`)
 })
