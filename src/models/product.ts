@@ -19,7 +19,10 @@ export class Product {
     }
   }
 
-  async updateProduct(id: number, product: ProductUpdatedType): Promise<ProductType> {
+  async updateProduct(
+    id: number,
+    product: ProductUpdatedType
+  ): Promise<ProductType> {
     try {
       const connection = await Database.connect();
       const sqlQuery =

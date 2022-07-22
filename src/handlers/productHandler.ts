@@ -40,12 +40,10 @@ const updateProduct = async (req: Request, res: Response) => {
       res.send('Product Name, Category and Price are required');
       return;
     }
-    const updatedProduct: ProductUpdatedType = await productInstance.updateProduct(
-      id,
-      productData
-    );
+    const updatedProduct: ProductUpdatedType =
+      await productInstance.updateProduct(id, productData);
     res.json({ product: updatedProduct });
-} catch (err) {
+  } catch (err) {
     res.status(400);
     res.json({ message: err });
   }

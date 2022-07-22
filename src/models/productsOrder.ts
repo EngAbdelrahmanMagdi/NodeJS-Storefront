@@ -1,10 +1,6 @@
 import { Product } from './product';
 import Database from '../database';
-import {
-  ProductNumberType,
-  ProductsOrderType,
-  ProductType,
-} from '../types/types';
+import { ProductNumberType, ProductsOrderType } from '../types/types';
 
 export class ProductsOrder {
   //I made this function to create order with its products having its quantity
