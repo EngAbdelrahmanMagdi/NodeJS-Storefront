@@ -1,15 +1,18 @@
 import { Product } from './product';
 import Database from '../database';
-import { ProductNumberType, ProductsOrderType, ProductType } from '../types/types';
+import {
+  ProductNumberType,
+  ProductsOrderType,
+  ProductType,
+} from '../types/types';
 
 export class ProductsOrder {
-
   //I made this function to create order with its products having its quantity
   //we don't buy always single piece of the Product. we may buy more than one
 
   async createProductsOrder(
     orderId: number,
-    products: ProductsOrderType[],
+    products: ProductsOrderType[]
   ): Promise<ProductsOrderType[]> {
     try {
       const productsOrderArray: ProductsOrderType[] = [];
@@ -38,7 +41,7 @@ export class ProductsOrder {
       const QuantitiedProductsOfOrder: ProductNumberType[] = [];
       const connection = await Database.connect();
 
-      // I will bring Product quantity from this table then joining it with Product 
+      // I will bring Product quantity from this table then joining it with Product
       // with id help by show function in Product table we join product with quantity
       //id of the Order should be in where to bring all products
 

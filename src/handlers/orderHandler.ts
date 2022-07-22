@@ -1,0 +1,57 @@
+import { Order } from '../models/order';
+import { OrderType } from '../types/types';
+import { Application, Request, Response } from 'express';
+import { verifyToken } from './userHandler';
+
+const orderInstance = new Order();
+
+const createOrder = async (request: Request, response: Response) => {
+  try {
+    const orderData: OrderType = {
+      user_id: response.locals.auth.user.id,
+      status: request.body.status,
+      products: request.body.products,
+    };
+    if (
+      !orderData.products ||
+      !orderData.status.match(/^(pending|fulfilled)$/)
+    ) {
+      response.status(400).send('Product data and Order Status are required!!');
+      return;
+    }
+    const newOrder = await orderInstance.createOrder(orderData);
+    response.json({ order: newOrder.products });
+  } catch (err) {
+    response.status(400).json({ message: err });
+  }
+};
+const showUserFulfilledOrders = async (
+  request: Request,
+  response: Response
+) => {
+  try {
+    const userId = response.locals.auth.user.id;
+    const userOrders = await orderInstance.showUserFulfilledOrders(userId);
+    response.json({ userCompletedOrders: userOrders });
+  } catch (err) {
+    response.status(400).json({ message: err });
+  }
+};
+
+const showCurrentUserOrder = async (request: Request, response: Response) => {
+  try {
+    const userId = response.locals.auth.user.id;
+    const userOrder = await orderInstance.showCurrentUserOrder(userId);
+    response.json({ userCurrentOrder: userOrder });
+  } catch (err) {
+    response.status(400).json({ message: err });
+  }
+};
+
+const orderRouter = (app: Application) => {
+  app.post('/orders/create', verifyToken, createOrder);
+  app.get('/orders/user/completed', verifyToken, showUserFulfilledOrders);
+  app.get('/orders/user', verifyToken, showCurrentUserOrder);
+};
+
+export default orderRouter;

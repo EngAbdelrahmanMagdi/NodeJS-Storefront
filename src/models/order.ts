@@ -3,7 +3,7 @@ import { ProductsOrder } from './productsOrder';
 import { OrderProductsType, OrderType } from '../types/types';
 
 const newOrderProducts = new ProductsOrder();
-//here we used inside Order Type, ProductsOrder 
+//here we used inside Order Type, ProductsOrder
 export class Order {
   async createOrder(order: OrderType): Promise<OrderType> {
     try {
@@ -18,11 +18,11 @@ export class Order {
       const createdOrder = result.rows[0];
       const orderProductsArray = await newOrderProducts.createProductsOrder(
         createdOrder.id,
-        order.products,
+        order.products
       );
 
       //we added here products to the order with the help of products_order table and its class function create
-      
+
       return { ...createdOrder, products: orderProductsArray };
     } catch (err) {
       throw new Error(`Order can't be created ${err}`);
@@ -40,10 +40,9 @@ export class Order {
         id,
       ]);
       //we brought here completed Orders, so we can use their id to bring all details from products_order table's class fn show
-      
+
       //this condition to make sure Completed Orders not empty
       if (fulfilledOrders.rows.length) {
-        
         //fulfilledOrders have user and orders id and status fulfilled
         //userfulfilledOrders is array of completed orders with full details of Products
 
@@ -60,7 +59,6 @@ export class Order {
         }
         connection.release();
         return userfulfilledOrders;
-        
       }
       return [];
     } catch (err) {
@@ -74,15 +72,11 @@ export class Order {
       const connection = await Client.connect();
       const sqlQuery =
         'SELECT * FROM orders WHERE user_id=($2) AND status=($1)';
-      const pendingOrders = await connection.query(sqlQuery, [
-        'pending',
-        id,
-      ]);
+      const pendingOrders = await connection.query(sqlQuery, ['pending', id]);
       //we brought here Pending Orders, so we can use their id to bring all details from products_order table's class fn show
-      
+
       //this condition to make sure Pending Orders not empty
       if (pendingOrders.rows.length) {
-        
         //pendingOrders have user and orders id and status pending
         //userPendingOrders is array of pending orders with full details of Products
 
@@ -99,7 +93,6 @@ export class Order {
         }
         connection.release();
         return userPendingOrders;
-        
       }
       return [];
     } catch (err) {
@@ -124,5 +117,5 @@ export class Order {
   }
 }
 
-//In those previous functions, ideas are the same. We used order table to bring user_id and order status 
+//In those previous functions, ideas are the same. We used order table to bring user_id and order status
 //And showOrderProducts fn from its class to bring fully details about products in the order

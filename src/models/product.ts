@@ -1,5 +1,5 @@
 import Database from '../database';
-import { ProductType } from '../types/types';
+import { ProductType, ProductUpdatedType } from '../types/types';
 
 export class Product {
   async createProduct(product: ProductType): Promise<ProductType> {
@@ -19,11 +19,11 @@ export class Product {
     }
   }
 
-  async updateProduct(id: number, product: ProductType): Promise<ProductType> {
+  async updateProduct(id: number, product: ProductUpdatedType): Promise<ProductType> {
     try {
       const connection = await Database.connect();
       const sqlQuery =
-        'UPDATE products SET name = $2, category = $2, price = $3  WHERE id = $1 RETURNING *';
+        'UPDATE products SET name = $2, category = $3, price = $4  WHERE id = $1 RETURNING *';
       const result = await connection.query(sqlQuery, [
         id,
         product.name,

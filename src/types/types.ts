@@ -20,6 +20,13 @@ export interface ProductType {
   category: string;
 }
 
+export interface ProductUpdatedType {
+  id?: number;
+  name?: string;
+  price?: number;
+  category?: string;
+}
+
 export interface ProductsOrderType {
   product_id: number;
   order_id: number;
