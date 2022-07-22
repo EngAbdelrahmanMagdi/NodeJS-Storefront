@@ -3,6 +3,45 @@ The company stakeholders want to create an online storefront to showcase their g
 
 These are the notes from a meeting with the frontend developer that describe what endpoints the API needs to supply, as well as data shapes the frontend and backend have agreed meet the requirements of the application. 
 #
+
+## Data Tables
+#
+## users
+ Columns       |            Type
+-------------  | --------------------------
+  id           |     integer
+  user_name    |     varchar(150)
+  password     |     varchar(150)
+  first_name   |    varchar(150)
+  last_name    |     varchar(150)
+
+#
+## products
+ Columns       |            Type
+-------------  | --------------------------
+  id           |     integer
+  name    |     varchar(150)
+  password     |     varchar(150)
+  category   |    varchar(150)
+  price    |     integer
+
+
+#
+## products_order
+ Columns      |        Type
+------------- | ------------------
+  product_id  |     integer (FK)
+  order_id    |     integer (FK)
+  quantity    |     integer
+ #
+## Orders
+ Columns      |            Type
+------------- | -----------------------
+  id          |     integer
+  user_id     |     integer (FK)
+  status      |     StatusOfProduct ENUM('pending', 'fulfilled')
+
+#
 ## API Endpoints
 
 ### Important Note: 
@@ -71,41 +110,3 @@ Don't forget to put bearer token after getting it in Postman's Header Authorizat
 - showCurrentUserOrder(get)  = http://localhost:3000/orders/user    
 
 #
-
-## Data Tables
-#
-## users
- Columns       |            Type
--------------  | --------------------------
-  id           |     integer
-  user_name    |     varchar(150)
-  password     |     varchar(150)
-  first_name   |    varchar(150)
-  last_name    |     varchar(150)
-
-#
-## products
- Columns       |            Type
--------------  | --------------------------
-  id           |     integer
-  name    |     varchar(150)
-  password     |     varchar(150)
-  category   |    varchar(150)
-  price    |     integer
-
-
-#
-## products_order
- Columns      |        Type
-------------- | ------------------
-  product_id  |     integer (FK)
-  order_id    |     integer (FK)
-  quantity    |     integer
- #
-## Orders
- Columns      |            Type
-------------- | -----------------------
-  id          |     integer
-  user_id     |     integer (FK)
-  status      |     StatusOfProduct ENUM('pending', 'fulfilled')
-
