@@ -4,6 +4,15 @@ import supertest, { Test, Response } from 'supertest';
 const request: supertest.SuperTest<Test> = supertest(server);
 
 describe('Order Handler Router', () => {
+  //SUCCESS TESTS
+
+  describe('SUCCESS TESTS!!', () => {
+    it('SUCCESS TESTS!!!', async () => {
+      const res: Response = await request.get('/');
+      expect(res.status).toBe(200);
+    });
+  });
+
   describe('404 NOT FOUND URL', () => {
     it('/Abdelrahman', async () => {
       const res: Response = await request.get('/Abdelrahman');
@@ -38,9 +47,8 @@ describe('Order Handler Router', () => {
       expect(res.status).toBe(401);
     });
     it('POST /orders/createeee UNAUTHORIZED', async () => {
-        const res: Response = await request.post('/orders/createeee');
-        expect(res.status).toBe(404);
-      });
+      const res: Response = await request.post('/orders/createeee');
+      expect(res.status).toBe(404);
+    });
   });
-
 });

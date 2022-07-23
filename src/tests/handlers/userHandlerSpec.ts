@@ -1,9 +1,19 @@
 import server from './../../server';
 import supertest, { Test, Response } from 'supertest';
-
+import { verifyToken } from '../../handlers/userHandler';
 const request: supertest.SuperTest<Test> = supertest(server);
 
 describe('User Handler router', () => {
+
+  //SUCCESS TESTS !!!!!
+
+  describe('SUCCESS TESTS!!', () => {
+    it('SUCCESS TESTS!!!', async () => {
+      const res: Response = await request.get('/');
+      expect(res.status).toBe(200);
+    });
+  });
+
   describe('/Abdelrahman', () => {
     it('404 url not found', async () => {
       const res: Response = await request.get('/Abdelrahman');
@@ -42,7 +52,7 @@ describe('User Handler router', () => {
   describe('POST /users/login', () => {
     it('Index Unauthorized', async () => {
       const res: Response = await request.post('/users/login');
-      expect(res.status).toBe(200);
+      expect(res.status).toBe(400);
     });
   });
 });

@@ -4,6 +4,28 @@ import supertest, { Test, Response } from 'supertest';
 const request: supertest.SuperTest<Test> = supertest(server);
 
 describe('Product Handler Router', () => {
+  //test for SUCCESS
+
+  describe('SUCCESS TESTS!!', () => {
+    it('SUCCESS TESTS!!!', async () => {
+      const res: Response = await request.get('/');
+      expect(res.status).toBe(200);
+    });
+  });
+
+  describe('TEST SUCCESS!!!!!!!!!!!!!!!!', () => {
+    //test for SUCCESS
+
+    it('index GET', async () => {
+      const res: Response = await request.get('/products');
+      expect(res.status).toBe(200);
+    });
+    it('index GET', async () => {
+      const res: Response = await request.get('/products/category/IPHONE');
+      expect(res.status).toBe(200);
+    });
+  });
+
   describe('404 NOT FOUND URL', () => {
     it('/Abdelrahman', async () => {
       const res: Response = await request.get('/Abdelrahman');
@@ -11,25 +33,12 @@ describe('Product Handler Router', () => {
     });
   });
   describe('GET /products 200', () => {
-    //test for SUCCESS 
-    it('index GET', async () => {
-      const res: Response = await request.get('/products');
-      expect(res.status).toBe(200);
+    it('index GET /produc(t) 404', async () => {
+      const res: Response = await request.get('/product/category/abdelrahman');
+      expect(res.status).toBe(404);
     });
     it('index GET /produc(t) 404', async () => {
       const res: Response = await request.get('/product');
-      expect(res.status).toBe(404);
-    });
-  });
-
-  describe('GET /products/category/:category 200', () => {
-    //test for SUCCESS
-    it('index GET', async () => {
-      const res: Response = await request.get('/products/category/IPHONE');
-      expect(res.status).toBe(200);
-    });
-    it('index GET /produc(t) 404', async () => {
-      const res: Response = await request.get('/product/category/abdelrahman');
       expect(res.status).toBe(404);
     });
   });
