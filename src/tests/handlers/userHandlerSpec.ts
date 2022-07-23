@@ -1,27 +1,64 @@
 import server from './../../server';
 import supertest, { Test, Response } from 'supertest';
-import { verifyToken } from '../../handlers/userHandler';
 const request: supertest.SuperTest<Test> = supertest(server);
-
 describe('User Handler router', () => {
+  let token = ''; 
 
-  //SUCCESS TESTS !!!!!
+beforeAll(async (): Promise<void> => {
+  await request.post('/users').send({
+    userName: 'Abdo',
+    password: 'admin',
+    firstName: 'Abdelrahmn',
+    lastName: 'Magdy'
+  });
 
-  describe('SUCCESS TESTS!!', () => {
-    it('SUCCESS TESTS!!!', async () => {
+  const response: Response = await request.post('/users/login').send({
+    userName: 'Abdo',
+    password: 'admin',
+  });
+  token = response.body.token;
+});
+
+//SUCCESS TESTS 
+// ==================================
+
+    it('POST /users/login', async () => {
+      const response: Response = await request.post('/users/login').send({
+        userName: 'Abdo',
+        password: 'admin',
+      });
+      expect(response.status).toBe(200);
+    });
+
+    it('POST /users', async () => {
+      const response: Response = await request.post('/users').send({
+        userName: 'Abdo',
+        password: 'admin',
+        firstName: 'Abdelrahman',
+        lastName: 'Magdy',
+      });
+      expect(response.status).toBe(200);
+    });
+
+
+
+    it('Main URL', async () => {
       const res: Response = await request.get('/');
       expect(res.status).toBe(200);
     });
-  });
 
-  describe('/Abdelrahman', () => {
+  
+
+  // ===========================================================
+
+  //Failed tests
+
     it('404 url not found', async () => {
       const res: Response = await request.get('/Abdelrahman');
       expect(res.status).toBe(404);
     });
-  });
+  
 
-  describe('POST /users', () => {
     it('POST /users BAD REQUEST 400', async () => {
       const res: Response = await request.post('/users');
       expect(res.status).toBe(400);
@@ -40,19 +77,18 @@ describe('User Handler router', () => {
       const res: Response = await request.get('/users/500');
       expect(res.status).toBe(401);
     });
-  });
+  
 
-  describe('GET /users unauthorized', () => {
+ 
     it('Index Unauthorized', async () => {
       const res: Response = await request.get('/users');
       expect(res.status).toBe(401);
     });
-  });
+  
 
-  describe('POST /users/login', () => {
     it('Index Unauthorized', async () => {
       const res: Response = await request.post('/users/login');
       expect(res.status).toBe(400);
     });
+  
   });
-});

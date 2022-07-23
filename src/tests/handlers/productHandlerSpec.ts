@@ -6,13 +6,6 @@ const request: supertest.SuperTest<Test> = supertest(server);
 describe('Product Handler Router', () => {
   //test for SUCCESS
 
-  describe('SUCCESS TESTS!!', () => {
-    it('SUCCESS TESTS!!!', async () => {
-      const res: Response = await request.get('/');
-      expect(res.status).toBe(200);
-    });
-  });
-
   describe('TEST SUCCESS!!!!!!!!!!!!!!!!', () => {
     //test for SUCCESS
 
@@ -21,10 +14,21 @@ describe('Product Handler Router', () => {
       expect(res.status).toBe(200);
     });
     it('index GET', async () => {
+      const res: Response = await request.get('/products/1');
+      expect(res.status).toBe(200);
+    });
+    it('index GET', async () => {
       const res: Response = await request.get('/products/category/IPHONE');
       expect(res.status).toBe(200);
     });
   });
+  describe('SUCCESS TESTS!!', () => {
+    it('SUCCESS TESTS!!!', async () => {
+      const res: Response = await request.get('/');
+      expect(res.status).toBe(200);
+    });
+  });
+
 
   describe('404 NOT FOUND URL', () => {
     it('/Abdelrahman', async () => {

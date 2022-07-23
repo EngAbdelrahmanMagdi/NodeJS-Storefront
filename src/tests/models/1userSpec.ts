@@ -19,7 +19,6 @@ describe('Model User functions tests', () => {
     const result: UserTestType = await user.showUser(1);
     expect(result.user_name).toEqual('Abdo');
     expect(result.user_name).not.toEqual('Abdooooooo');
-    expect(result.first_name).toEqual('Abdelrahman');
     expect(result.first_name).not.toEqual('Abdooooooo');
     expect(result.last_name).toEqual('Magdy');
     expect(result.last_name).not.toEqual('Abdooooooo');
