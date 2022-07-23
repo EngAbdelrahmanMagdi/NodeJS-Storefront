@@ -135,3 +135,10 @@ const userRouter = (app: Application) => {
 };
 
 export default userRouter;
+
+// All methods here are base on bringing data from body or url params
+//then second step make validation all data existed and valid
+//use this data in Models function. 
+//make sign for token in required cases and send response with both data and token 
+//verification token between url and fn in express instance with its methods  
+//The same idea with other handlers

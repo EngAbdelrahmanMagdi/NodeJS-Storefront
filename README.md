@@ -68,3 +68,30 @@ CREATE DATABASE storefront_test;
 
 - Configure .env to fit your environment (look at .env.example).
 
+#
+ ### If you faced problems in scripts running, Please make sure you've some packages globally installed in your Machine 
+  (for windows) to make ENV in jasmine and test scripts working
+  ```
+  npm install -g win-node-env
+  ```
+  ```
+  npm install -g @dotenv
+  ```
+-For jasmine scripts problems use these
+
+```
+  npm install -g jasmine-ts
+  npm install -g jasmine
+  npm install -g @types/jasmine
+```
+-If you faced problem in migration scripts use these
+
+  ```
+  npm install -g db-migrate
+
+  npm install -g db-migrate-pg
+  ```
+  -If you faced problems for node js with typescript
+  ```
+  npm install -g ts-node
+  ```

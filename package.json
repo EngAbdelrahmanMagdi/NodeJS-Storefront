@@ -13,7 +13,7 @@
     "db:up": "db-migrate up",
     "db:down": "db-migrate down",
     "test": "npm run build && npm run jasmine",
-    "jasmine": "ENV=test db-migrate --env test up && jasmine-ts && db-migrate db:drop test"
+    "jasmine": "ENV=test db-migrate --env test up && jasmine && db-migrate db:drop test"
   },
   "author": "Udacity",
   "license": "ISC",
@@ -43,6 +43,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "jasmine": "^4.2.1",
     "jasmine-spec-reporter": "^7.0.0",
+    "jasmine-ts": "^0.4.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1",
