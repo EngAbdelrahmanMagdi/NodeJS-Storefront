@@ -3,12 +3,12 @@ import { ProductType } from '../../types/types';
 
 const product = new Product();
 
-describe(`Model Product functions' tests`, () => {
+describe('Model Product functions tests', () => {
   it('Test createProduct Method in different ways', async () => {
     const result: ProductType = await product.createProduct({
-      name:'OPPO',
-      category:'Mobile',
-      price:5000
+      name: 'OPPO',
+      category: 'Mobile',
+      price: 5000,
     });
     expect(result).toBeInstanceOf(Object);
   });
@@ -25,25 +25,31 @@ describe(`Model Product functions' tests`, () => {
   });
 
   it('Test showProductsInCategory Method in different', async () => {
-    const result: ProductType[] = await product.showProductsInCategory('Mobile');
+    const result: ProductType[] = await product.showProductsInCategory(
+      'Mobile'
+    );
     expect(result).toBeInstanceOf(Array);
-    expect(result).toEqual([{
-        id:1,
-        name:'OPPO',
-        category:'Mobile',
-        price:5000
-    }])
+    expect(result).toEqual([
+      {
+        id: 1,
+        name: 'OPPO',
+        category: 'Mobile',
+        price: 5000,
+      },
+    ]);
   });
 
   it('Test index Method return', async () => {
     const result: ProductType[] = await product.index();
     expect(result).toBeInstanceOf(Array);
-    expect(result).toEqual([{
-        id:1,
-        name:'OPPO',
-        category:'Mobile',
-        price:5000
-    }])
+    expect(result).toEqual([
+      {
+        id: 1,
+        name: 'OPPO',
+        category: 'Mobile',
+        price: 5000,
+      },
+    ]);
   });
 
   it('Test showProduct Method in different', async () => {

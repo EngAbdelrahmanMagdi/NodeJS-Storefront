@@ -71,7 +71,7 @@ const index = async (request: Request, response: Response) => {
     const users: UserType[] = await userInstance.index();
     response.json(users);
   } catch (err) {
-    response.status(404).json({ message: err });
+    response.status(401).json({ message: err });
   }
 };
 
@@ -81,7 +81,7 @@ const showUser = async (request: Request, response: Response) => {
     const user: UserType = await userInstance.showUser(id);
     response.json(user);
   } catch (err) {
-    response.status(404).json({ message: err });
+    response.status(401).json({ message: err });
   }
 };
 

@@ -3,10 +3,10 @@ import { UserTestType } from '../../types/types';
 
 const user = new User();
 
-describe(`Model User functions' tests`, () => {
+describe('Model User functions tests', () => {
   it('Test createUser Method in different', async () => {
     const result: UserTestType = await user.createUser({
-      id:1,
+      id: 1,
       userName: 'Abdo',
       password: 'admin',
       firstName: 'Abdelrahman',
