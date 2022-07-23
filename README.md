@@ -3,7 +3,14 @@
 ## Done By/ Abdelrahman Magdy 
 
 #
+## Important notes 
 
+- Don't forget to fill .env by .env.example with your env variables
+- Don't forget to create 2 Databases (storefront, storefront_test)
+- Don't forget Migration
+- If you faced Problems in urls, they're existed requirements.md and in handlers too
+- If you faced Problems in entering data in postman's body, there're examples in requirements.md
+  #
 ## Scripts You may need 
 
 ### To install my dependencies and developer dependencies 
