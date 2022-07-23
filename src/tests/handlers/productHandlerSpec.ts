@@ -11,6 +11,7 @@ describe('Product Handler Router', () => {
     });
   });
   describe('GET /products 200', () => {
+    //test for SUCCESS 
     it('index GET', async () => {
       const res: Response = await request.get('/products');
       expect(res.status).toBe(200);
@@ -22,6 +23,7 @@ describe('Product Handler Router', () => {
   });
 
   describe('GET /products/category/:category 200', () => {
+    //test for SUCCESS
     it('index GET', async () => {
       const res: Response = await request.get('/products/category/IPHONE');
       expect(res.status).toBe(200);

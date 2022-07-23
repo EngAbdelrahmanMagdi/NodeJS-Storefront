@@ -38,4 +38,11 @@ describe('User Handler router', () => {
       expect(res.status).toBe(401);
     });
   });
+
+  describe('POST /users/login', () => {
+    it('Index Unauthorized', async () => {
+      const res: Response = await request.post('/users/login');
+      expect(res.status).toBe(200);
+    });
+  });
 });
