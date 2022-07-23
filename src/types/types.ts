@@ -50,3 +50,11 @@ export interface OrderProductsType {
   status: string;
   products: ProductNumberType[];
 }
+
+export type UserTestType = {
+  id?: number,
+  user_name?: string,
+  password?: string,
+  first_name?: string,
+  last_name?: string
+}
