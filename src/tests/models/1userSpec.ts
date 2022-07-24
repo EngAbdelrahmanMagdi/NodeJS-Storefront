@@ -6,7 +6,6 @@ const user = new User();
 describe('Model User functions tests', () => {
   it('Test createUser Method in different', async () => {
     const result: UserTestType = await user.createUser({
-      id: 1,
       userName: 'Abdo',
       password: 'admin',
       firstName: 'Abdelrahman',
@@ -17,7 +16,8 @@ describe('Model User functions tests', () => {
 
   it('Test showUser Method in different', async () => {
     const result: UserTestType = await user.showUser(1);
-    expect(result.user_name).toEqual('Abdo');
+    expect(result.user_name).toEqual('Alaa');
+    expect(result.user_name).not.toEqual('Abdelrahman');
     expect(result.user_name).not.toEqual('Abdooooooo');
     expect(result.first_name).not.toEqual('Abdooooooo');
     expect(result.last_name).toEqual('Magdy');
