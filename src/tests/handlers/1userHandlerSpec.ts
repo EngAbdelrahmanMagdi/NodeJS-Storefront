@@ -1,14 +1,11 @@
-import server from './../../server';
+import server from '../../server';
 import supertest, { Test, Response } from 'supertest';
 import jwt from 'jsonwebtoken';
-import { User } from '../../models/user';
 
-const user = new User();
 const request: supertest.SuperTest<Test> = supertest(server);
 
-
 const newUser = {
-  userName:'Abdo',
+  userName: 'Abdo',
   password: 'admin',
   firstName: 'Abdo',
   lastName: 'Magdy',
@@ -17,17 +14,20 @@ const newUser = {
 const token = jwt.sign(newUser, process.env.PRIVATE_KEY as string);
 
 describe('User Handler router', () => {
-
   //SUCCESS TESTS
   // ==================================
 
   it('POST /users', async () => {
-    const response: Response = await request.post('/users').type('form').send({
-      userName: 'Abdo',
-      password: 'admin',
-      firstName: 'Abdelrahman',
-      lastName: 'Magdy',
-    }).expect(200)
+    const response: Response = await request
+      .post('/users')
+      .type('form')
+      .send({
+        userName: 'Abdo',
+        password: 'admin',
+        firstName: 'Abdelrahman',
+        lastName: 'Magdy',
+      })
+      .expect(200);
   });
   it('POST /users/login', async () => {
     const response: Response = await request
@@ -36,10 +36,9 @@ describe('User Handler router', () => {
         userName: 'Abdo',
         password: 'admin',
       })
-      .expect(200)
+      .expect(200);
   });
 
-  
   it('GET /users', async () => {
     const response: Response = await request
       .get('/users')
@@ -68,7 +67,6 @@ describe('User Handler router', () => {
       });
     expect(response.status).toBe(200);
   });
-
 
   it('Main URL', async () => {
     const res: Response = await request.get('/');
@@ -111,5 +109,5 @@ describe('User Handler router', () => {
   it('Index Unauthorized', async () => {
     const res: Response = await request.post('/users/login');
     expect(res.status).toBe(400);
-  })
+  });
 });
