@@ -16,14 +16,14 @@ export class Order {
 
       conn.release();
       const createdOrder = result.rows[0];
-      return createdOrder;
-      // const orderProductsArray = await newOrderProducts.createProductsOrder(
-      //   createdOrder.id,
-      //   order.products
-      // );
+      //return createdOrder;
+      const orderProductsArray = await newOrderProducts.createProductsOrder(
+        createdOrder.id,
+        order.products
+      );
       // console.log(`orderProductsArray is ${orderProductsArray}`);
       //we added here products to the order with the help of products_order table and its class function create
-      //return { ...createdOrder, products: orderProductsArray };
+      return { ...createdOrder, products: orderProductsArray };
     } catch (err) {
       throw new Error(`Order can't be created ${err}`);
     }
