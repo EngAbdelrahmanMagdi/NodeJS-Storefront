@@ -16,13 +16,12 @@ const server: Application = express();
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
 
+server.use(morgan('dev'));
 userRouter(server);
 productRouter(server);
 orderRouter(server);
 
 //Morgan package for getting responses
-
-server.use(morgan('dev'));
 
 //Main URL
 

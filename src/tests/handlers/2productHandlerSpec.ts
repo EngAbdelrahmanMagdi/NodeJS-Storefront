@@ -13,6 +13,8 @@ const newUser = {
 
 const token = jwt.sign(newUser, process.env.PRIVATE_KEY as string);
 
+//SUCCESS TESTS !!
+
 describe('Product Handler Router', () => {
   describe('POST /products/create', () => {
     it('POST /products/create UNAUTHORIZED', async () => {
